@@ -4,6 +4,7 @@ public class Radio {
 
 
     public int getCurrentRadioStation() {
+
         return currentRadioStation;
     }
 
@@ -24,6 +25,17 @@ public class Radio {
         }
         currentRadioStation = newCurrentRadioStation;
     }
+
+    public void setCurrentMinMaxRadioStation(int newCurrentRadioStation) {
+        if (newCurrentRadioStation < 0) {
+            return;
+        }
+        if (newCurrentRadioStation > 9) {
+            return;
+        }
+        currentRadioStation = newCurrentRadioStation;
+    }
+
 
     public int getCurrentVolume() {
 

@@ -8,25 +8,12 @@ public class Radio {
         return currentRadioStation;
     }
 
-    public void setCurrentRadioStationNext(int newCurrentRadioStation) {
-        if (newCurrentRadioStation < 9) {
-            newCurrentRadioStation = newCurrentRadioStation + 1;
-        } else {
-            newCurrentRadioStation = 0;
-        }
-        currentRadioStation = newCurrentRadioStation;
+    public int getCurrentVolume() {
+
+        return currentVolume;
     }
 
-    public void setCurrentRadioStationPrev(int newCurrentRadioStation) {
-        if (newCurrentRadioStation > 0)
-            newCurrentRadioStation = newCurrentRadioStation - 1;
-        else {
-            newCurrentRadioStation = 9;
-        }
-        currentRadioStation = newCurrentRadioStation;
-    }
-
-    public void setCurrentMinMaxRadioStation(int newCurrentRadioStation) {
+    public void setRadioStation(int newCurrentRadioStation) {
         if (newCurrentRadioStation < 0) {
             return;
         }
@@ -36,30 +23,46 @@ public class Radio {
         currentRadioStation = newCurrentRadioStation;
     }
 
-
-    public int getCurrentVolume() {
-
-        return currentVolume;
-    }
-
-    public void setCurrentVolumeAdd(int newCurrentVolume) {
-        if (newCurrentVolume < 100) {
-            newCurrentVolume = newCurrentVolume + 1;
-        } else {
-            newCurrentVolume = 100;
+    public void setCurrentVolume(int newCurrentVolume) {
+        if (newCurrentVolume > 100) {
+            return;
+        }
+        if (newCurrentVolume < 0) {
+            return;
         }
         currentVolume = newCurrentVolume;
     }
 
-    public void setCurrentVolumeReduce(int newCurrentVolume) {
-        if (newCurrentVolume > 0) {
-            newCurrentVolume = newCurrentVolume - 1;
+
+    public void Next() {
+        if (currentRadioStation != 9) {
+            currentRadioStation++;
         } else {
-            newCurrentVolume = 0;
+            currentRadioStation = 0;
         }
-        currentVolume = newCurrentVolume;
+    }
+
+    public void Prev() {
+        if (currentRadioStation != 0) {
+            currentRadioStation--;
+        } else {
+            currentRadioStation = 9;
+        }
+    }
+
+    public void volumeAdd() {
+        if (currentVolume != 100) {
+            currentVolume++;
+        }
+    }
+
+    public void volumeReduce() {
+        if (currentVolume != 0) {
+            currentVolume--;
+        }
     }
 }
+
 
 
 

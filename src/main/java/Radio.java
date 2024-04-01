@@ -1,28 +1,20 @@
 public class Radio {
     private int currentRadioStation;
     private int currentVolume;
+    private int maxStation;
 
+    public Radio(int numStation) {
+        maxStation = numStation - 1;
+
+    }
+
+    public Radio() {
+        maxStation = 9;
+    }
 
     public int getCurrentRadioStation() {
+
         return currentRadioStation;
-    }
-
-    public void setCurrentRadioStationNext(int newCurrentRadioStation) {
-        if (newCurrentRadioStation < 9) {
-            newCurrentRadioStation = newCurrentRadioStation + 1;
-        } else {
-            newCurrentRadioStation = 0;
-        }
-        currentRadioStation = newCurrentRadioStation;
-    }
-
-    public void setCurrentRadioStationPrev(int newCurrentRadioStation) {
-        if (newCurrentRadioStation > 0)
-            newCurrentRadioStation = newCurrentRadioStation - 1;
-        else {
-            newCurrentRadioStation = 9;
-        }
-        currentRadioStation = newCurrentRadioStation;
     }
 
     public int getCurrentVolume() {
@@ -30,22 +22,53 @@ public class Radio {
         return currentVolume;
     }
 
-    public void setCurrentVolumeAdd(int newCurrentVolume) {
-        if (newCurrentVolume < 100) {
-            newCurrentVolume = newCurrentVolume + 1;
-        } else {
-            newCurrentVolume = 100;
+    public void setRadioStation(int newCurrentRadioStation) {
+        if (newCurrentRadioStation < 0) {
+            return;
+        }
+        if (newCurrentRadioStation > maxStation) {
+            return;
+        }
+        currentRadioStation = newCurrentRadioStation;
+    }
+
+    public void setCurrentVolume(int newCurrentVolume) {
+        if (newCurrentVolume > 100) {
+            return;
+        }
+        if (newCurrentVolume < 0) {
+            return;
         }
         currentVolume = newCurrentVolume;
     }
 
-    public void setCurrentVolumeReduce(int newCurrentVolume) {
-        if (newCurrentVolume > 0) {
-            newCurrentVolume = newCurrentVolume - 1;
+
+    public void Next() {
+        if (currentRadioStation != maxStation) {
+            currentRadioStation++;
         } else {
-            newCurrentVolume = 0;
+            currentRadioStation = 0;
         }
-        currentVolume = newCurrentVolume;
+    }
+
+    public void Prev() {
+        if (currentRadioStation != 0) {
+            currentRadioStation--;
+        } else {
+            currentRadioStation = maxStation;
+        }
+    }
+
+    public void volumeAdd() {
+        if (currentVolume != 100) {
+            currentVolume++;
+        }
+    }
+
+    public void volumeReduce() {
+        if (currentVolume != 0) {
+            currentVolume--;
+        }
     }
 }
 
